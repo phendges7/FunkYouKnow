@@ -1,0 +1,15 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  height: 5rem;
+  border: greenyellow 1px solid;
+}
+
+.header__logo {
+  height: 10rem;
+  position: absolute;
+  left: 0;
+}

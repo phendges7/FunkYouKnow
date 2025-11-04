@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  min-height: 50vh;
+}
+
+.main__title {
+  margin-top: 50px;
+  font-size: 72px;
+}
+
+.main__subtitle {
+  font-size: 36px;
+}
+
+.main__description {
+  font-size: 18px;
+}
+
+.main__buttons {
+  margin-top: 50px;
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+}
+.main__button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6a2389;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

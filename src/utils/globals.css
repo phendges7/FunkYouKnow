@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  max-height: 100vh;
+  background-color: black;
+  color: whitesmoke;
+}
+
+#root {
+  font-family: Arial, sans-serif;
+  max-width: 1280px;
+}

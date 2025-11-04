@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  gap: 25px;
+  padding: 0 25px;
+}
+
+.nav__item {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: #46df08;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
