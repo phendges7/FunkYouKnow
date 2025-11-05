@@ -19,8 +19,8 @@ const RequestSong = () => {
     try {
       const { data, error } = await supabase.from("requested_songs").insert([
         {
-          song_name: songTitle,
-          song_link: songLink,
+          title: songTitle,
+          link: songLink,
         },
       ]);
 

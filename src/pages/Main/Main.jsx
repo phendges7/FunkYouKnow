@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import RequestedSongs from "../../components/RequestedSongs/RequestedSongs";
+import SongList from "../../components/SongList/SongList";
 import "./Main.css";
 
 const Main = () => {
@@ -27,7 +27,7 @@ const Main = () => {
           </button>
         </div>
       </div>
-      <RequestedSongs />
+      <SongList />
     </div>
   );
 };

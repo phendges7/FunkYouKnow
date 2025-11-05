@@ -1,0 +1,30 @@
+.song-list {
+  border: violet 1px solid;
+  max-width: 275px;
+  position: absolute;
+  right: 0;
+  padding: 0.5rem;
+  background: #111;
+  border-radius: 12px;
+}
+
+.song-list__title {
+  font-size: 30px;
+}
+
+.song-list__list {
+  list-style-type: none;
+}
+
+.song-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.song-list__likes {
+  color: #ff5050;
+  margin-left: 1rem;
+}
