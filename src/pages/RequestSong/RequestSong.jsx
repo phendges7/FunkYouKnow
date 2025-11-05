@@ -1,15 +1,41 @@
 import "./RequestSong.css";
 
+import { supabase } from "../../utils/supabaseClient";
+import { useState } from "react";
+
 const RequestSong = () => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setMessage("Submitting your request...");
+
     const formData = new FormData(e.target);
     const songTitle = formData.get("songTitle");
-    const songUrl = formData.get("songUrl");
-    console.log("Requested song:", songTitle);
-    console.log("Song URL:", songUrl);
-    e.target.reset();
+    const songLink = formData.get("songLink");
+
+    try {
+      const { data, error } = await supabase.from("requested_songs").insert([
+        {
+          song_name: songTitle,
+          song_link: songLink,
+        },
+      ]);
+
+      if (error) throw error;
+
+      setMessage("🎵 Song request submitted successfully!");
+      e.target.reset();
+    } catch (err) {
+      console.error("Error submitting song:", err);
+      setMessage("⚠️ Something went wrong. Try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   return (
     <div className="request-song">
       <div className="request-song__content">
@@ -45,9 +71,14 @@ const RequestSong = () => {
               required
             ></input>
           </div>
-          <button type="submit" className="form__submit">
-            SUBMIT REQUEST
+          <button
+            type="submit"
+            className="form__submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Submitting..." : "SUBMIT REQUEST"}
           </button>
+          {message && <p className="form__message">{message}</p>}
         </form>
       </div>
     </div>
