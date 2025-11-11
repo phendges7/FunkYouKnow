@@ -1,0 +1,19 @@
+.layout-admin {
+  display: flex;
+  min-height: 100vh;
+  background: #0e0e0e;
+  color: #fff;
+}
+
+.layout-admin__content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background: #121212;
+}
+
+.layout-admin__content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}

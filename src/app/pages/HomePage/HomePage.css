@@ -1,0 +1,107 @@
+.home {
+  padding: 75px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+
+  font-family: "Urbanist", sans-serif;
+  box-sizing: border-box;
+}
+
+.home__content {
+  width: auto;
+}
+
+.home__title {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 20%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(106, 35, 137, 0.4),
+    0 0 15px rgba(176, 110, 230, 0.3);
+}
+
+.home__subtitle {
+  font-size: 36px;
+}
+
+.home__description {
+  font-size: 18px;
+}
+
+.home__buttons {
+  margin-top: 50px;
+  display: flex;
+  gap: 25px;
+  justify-content: flex-start;
+}
+
+.home__button {
+  background-color: #6a2389;
+  color: white;
+}
+
+/* Tablets (até 1024px) */
+@media (max-width: 1024px) {
+  .home {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    min-height: calc(100dvh - 300px);
+    padding-top: 30px;
+  }
+
+  .home__title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+  }
+
+  .home__subtitle {
+    font-size: 1.8rem;
+  }
+
+  .home__description {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .home__buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+/* Smartphones (até 777px) */
+@media screen and (max-width: 777px) {
+  .home {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 50px 0;
+    min-height: calc(100dvh - 180px);
+  }
+
+  .home__content {
+    margin-bottom: 50px;
+  }
+
+  .home__title {
+    font-size: 2.2rem;
+  }
+
+  .home__subtitle {
+    font-size: 1.3rem;
+  }
+
+  .home__description {
+    font-size: 0.95rem;
+    padding: 0 15px;
+  }
+}
