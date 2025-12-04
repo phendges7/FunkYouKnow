@@ -1,8 +1,8 @@
 import "./RequestSong.css";
-import usePageFade from "../../../utils/usePageFade.js";
+import usePageFade from "../../../../hooks/usePageFade.js";
 import { useState } from "react";
-import { supabase } from "../../../utils/supabaseClient";
-import Toast from "../../../components/Toast/Toast.jsx";
+import { supabase } from "../../../../lib/supabase/supabaseClient";
+import Toast from "../../../../components/feedback/Toast/Toast.jsx";
 
 async function submitSongRequest({ title, artist, link }) {
   const { error } = await supabase

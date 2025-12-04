@@ -3,7 +3,7 @@
  * Keeps Supabase Storage and metadata table in sync.
  */
 
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "../../../lib/supabase/supabaseClient";
 
 export const eventMediaService = {
   async getGalleryByEvent(eventId) {

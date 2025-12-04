@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "../../../lib/supabase/supabaseClient";
 import "./AdminNavBar.css";
 
 const AdminNavBar = () => {

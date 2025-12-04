@@ -2,7 +2,7 @@
  * Handles uploading of event cover (image or video) to Supabase Storage.
  */
 
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "../../../lib/supabase/supabaseClient";
 
 const useCoverUpload = (form, setForm, setUploading, setError) => {
   const handleCoverUpload = async (e) => {

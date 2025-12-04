@@ -1,5 +1,5 @@
-import { useBackgroundVideo } from "../../hooks/useBackgroundVideo";
-import { useVideoPreload } from "../../hooks/useVideoPreload";
+import { useBackgroundVideo } from "../../../hooks/useBackgroundVideo";
+import { useVideoPreload } from "../../../hooks/useVideoPreload";
 import "./GlobalBackgroundVideo.css";
 
 const GlobalBackgroundVideo = () => {

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import SongList from "../../components/SongList/SongList";
+import SongList from "../../../songs/components/SongList/SongList";
 import "./Main.css";
 
 const Main = () => {
@@ -16,11 +16,11 @@ const Main = () => {
           Join us on a journey through sound and rhythm.
         </p>
         <div className="main__buttons">
-          <button className="main__button" onClick={() => navigate("/")}>
+          <button className="main__button button" onClick={() => navigate("/")}>
             BUY TICKETS
           </button>
           <button
-            className="main__button"
+            className="main__button button"
             onClick={() => navigate("/request-song")}
           >
             REQUEST A SONG

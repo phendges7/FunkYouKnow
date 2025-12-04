@@ -1,6 +1,6 @@
 import "./SongList.css";
 import { useState, useEffect } from "react";
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "../../../../lib/supabase/supabaseClient";
 import SongCard from "../SongCard/SongCard";
 
 const SongList = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabase } from "../../../../utils/supabaseClient";
+import { supabase } from "../../../../lib/supabase/supabaseClient";
 import { eventsService } from "../../services/eventsService";
 import { eventMediaService } from "../../services/eventMediaService";
 import useEventForm from "../../hooks/useEventForm";

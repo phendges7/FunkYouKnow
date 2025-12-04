@@ -1,5 +1,5 @@
 import "./Footer.css";
-import instagramLogo from "../../assets/icons/instagram-icon.svg";
+import instagramLogo from "../../../assets/icons/instagram-icon.svg";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {

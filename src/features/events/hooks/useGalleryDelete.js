@@ -3,7 +3,7 @@
  * then updates the event description/photos.
  */
 
-import { supabase } from "../../../utils/supabaseClient";
+import { supabase } from "../../../lib/supabase/supabaseClient";
 import { extractStoragePath } from "./eventFormUtils";
 import { eventMediaService } from "../services/eventMediaService";
 

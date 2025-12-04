@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { eventsService } from "../../services/eventsService";
 import { eventMediaService } from "../../services/eventMediaService";
 
-import ModalGallery from "../../../../components/ModalGallery/ModalGallery";
-import usePageFade from "../../../../utils/usePageFade";
+import ModalGallery from "../../../../components/media/ModalGallery/ModalGallery";
+import usePageFade from "../../../../hooks/usePageFade";
 
 import { useBackgroundVideo } from "../../../../hooks/useBackgroundVideo";
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { eventsService } from "../../../services/eventsService";
 import EventCard from "../../../components/EventCard/Admin/AdminEventCard";
 import PopupDeleteConfirmation from "../../../components/Modals/DeleteConfirmation/DeleteConfirmation";
-import { supabase } from "../../../../../utils/supabaseClient";
+import { supabase } from "../../../../../lib/supabase/supabaseClient";
 import "./AdminEventList.css";
 
 const AdminEventsList = () => {

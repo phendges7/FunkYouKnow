@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import usePageFade from "../../utils/usePageFade";
-import { supabase } from "../../utils/supabaseClient";
+import usePageFade from "../../../../hooks/usePageFade";
+import { supabase } from "../../../../lib/supabase/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 const Admin = () => {

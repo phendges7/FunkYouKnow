@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "../../../lib/supabase/supabaseClient";
 
 import PublicNavBar from "../PublicNavBar/PublicNavBar";
 import AdminNavBar from "../AdminNavBar/AdminNavBar";
-import Logo from "../../assets/logos/NoBGLogo.png";
+import Logo from "../../../assets/logos/NoBGLogo.png";
 
 import "./Header.css";
 

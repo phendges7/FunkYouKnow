@@ -1,8 +1,8 @@
 import "./About.css";
-import usePageFade from "../../utils/usePageFade";
-import calendar from "../../assets/icons/calendar-icon.svg";
-import headphone from "../../assets/icons/headphone-icon.svg";
-import community from "../../assets/icons/community-icon.svg";
+import usePageFade from "../../../hooks/usePageFade";
+import calendar from "../../../assets/icons/calendar-icon.svg";
+import headphone from "../../../assets/icons/headphone-icon.svg";
+import community from "../../../assets/icons/community-icon.svg";
 
 const About = () => {
   usePageFade();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { eventsService } from "../../services/eventsService";
-import usePageFade from "../../../../utils/usePageFade";
+import usePageFade from "../../../../hooks/usePageFade";
 import EventCard from "../../components/EventCard/User/UserEventCard";
 import "./PublicEventList.css";
 
