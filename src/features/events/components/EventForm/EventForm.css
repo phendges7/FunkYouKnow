@@ -1,0 +1,184 @@
+.event-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(176, 110, 230, 0.15);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: "Urbanist", sans-serif;
+}
+
+.event-form__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #6a2389, #b06ee6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.event-form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.event-form__input,
+.event-form__textarea,
+.event-form__select {
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.event-form__input:focus,
+.event-form__textarea:focus,
+.event-form__select:focus {
+  outline: none;
+  border-color: #b06ee6;
+}
+
+.event-form__textarea {
+  resize: vertical;
+}
+
+.event-form__image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.event-form__image-preview img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.event-form__error {
+  background: rgba(255, 0, 0, 0.2);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: #ffbdbd;
+}
+
+.event-form__submit {
+  margin-top: 1rem;
+  background: linear-gradient(90deg, #6a2389, #b06ee6);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.event-form__submit:hover {
+  transform: scale(1.02);
+}
+
+.event-form__gallery-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.event-form__gallery-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.5rem;
+}
+
+.event-form__gallery-preview img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(176, 110, 230, 0.3);
+}
+
+/* Força o ícone do calendário a ficar claro */
+.event-form__input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.event-form__input[type="datetime-local"] {
+  color-scheme: dark; /* Diz pro browser: “usa estilos escuros” */
+}
+.event-form__input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.gallery-item {
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.gallery-delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.gallery-delete-btn:hover {
+  background: rgba(255, 0, 0, 0.7);
+}
+
+.event-form__gallery-item {
+  position: relative;
+}
+
+.event-form__gallery-item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(176, 110, 230, 0.3);
+}
+
+.event-form__gallery-delete {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border: none;
+  border-radius: 999px;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(176, 110, 230, 0.7);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.event-form__gallery-delete:hover {
+  transform: scale(1.1);
+  background: rgba(186, 85, 211, 0.9);
+}
+
+.event-form__media {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}

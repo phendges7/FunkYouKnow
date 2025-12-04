@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  height: 5rem;
+}
+
+.header__logo {
+  height: 10rem;
+  cursor: pointer;
+  transition: transform 0.4s ease, filter 0.8s ease 0.1s;
+}
+
+.header__logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 12px rgba(106, 35, 137, 1)) /* roxo principal */
+    drop-shadow(0 0 24px rgba(128, 0, 255, 0.7)); /* brilho difuso */
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+}
+.header__skeleton {
+  width: 320px;
+  height: 20px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #222 0%, #333 50%, #222 100%);
+  background-size: 320px 100%;
+  animation: header-shimmer 1.3s infinite linear;
+}
+@keyframes header-shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 320px 0;
+  }
+}
+
+@media (max-width: 1111px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__logo {
+    margin: 0 auto;
+  }
+}

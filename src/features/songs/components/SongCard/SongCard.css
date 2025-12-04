@@ -1,0 +1,175 @@
+.song-card {
+  border: 2px solid #333;
+  background-color: #111;
+  border-radius: 10px;
+  padding: 0.7rem;
+  transition: all 0.2s ease-in-out;
+  height: 60px;
+  font-size: 18px;
+  position: relative;
+  overflow-x: visible; /* impede o corte do glow */
+}
+
+.song-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7), 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* Conteúdo interno */
+.song-card__content {
+  padding-top: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.song-card__rank {
+  color: #6a2389;
+  font-weight: bold;
+  font-size: larger;
+  text-shadow: 0 0 8px rgba(106, 35, 137, 0.4),
+    0 0 15px rgba(176, 110, 230, 0.3);
+}
+
+.song-card__info {
+  flex-grow: 1;
+  margin-left: 0;
+  overflow: hidden; /* impede o texto de vazar */
+  position: relative;
+  max-width: 155px; /* ajusta conforme o layout */
+}
+.song-card__name {
+  color: whitesmoke;
+  font-weight: 500;
+  margin: 0;
+}
+.song-card__artist {
+  color: #bbbbbb;
+  font-weight: 400;
+  margin: 0;
+}
+.song-card__name,
+.song-card__artist {
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Só anima quem tiver a classe .scrolling-text */
+.scrolling-text {
+  animation: text-scroll 7s ease-in-out infinite alternate;
+  animation-play-state: running;
+}
+
+/* Likes */
+.song-card__likes {
+  width: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(106, 35, 137, 0.4),
+    0 0 15px rgba(176, 110, 230, 0.3);
+}
+
+/* SVG inline */
+.like-icon {
+  width: 28px;
+  height: 28px;
+  stroke: #6a2389;
+  stroke-width: 2;
+  fill: none;
+  cursor: pointer;
+  transition: stroke 0.3s ease, fill 0.3s ease, transform 0.2s ease,
+    filter 0.3s ease;
+}
+
+.like-icon:hover {
+  stroke: #b06ee6;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 10px rgba(176, 110, 230, 0.8));
+}
+
+/* 💜 Estado ativo (curtido) */
+.like-icon--active {
+  fill: #b06ee6;
+  stroke: #b06ee6;
+  filter: drop-shadow(0 0 15px rgba(176, 110, 230, 0.9));
+  transform: scale(1.2);
+  animation: pulse-like 0.5s ease;
+}
+
+/* Animação de "batida" */
+@keyframes pulse-like {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(176, 110, 230, 0.4));
+  }
+  50% {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 20px rgba(176, 110, 230, 0.9));
+  }
+  100% {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px rgba(176, 110, 230, 0.7));
+  }
+}
+/*Animação de "deslize"*/
+@keyframes text-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .song-card {
+    padding: 0.6rem;
+  }
+
+  .song-card__name {
+    font-size: 0.85rem;
+  }
+
+  .like-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .song-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .song-card__content {
+    padding-top: 0.9rem;
+    gap: 0.4rem;
+  }
+
+  .song-card__likes {
+    justify-content: center;
+  }
+
+  .song-card__name {
+    font-size: 1rem;
+  }
+
+  .song-card__artist {
+    font-size: 0.95rem;
+  }
+
+  .like-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

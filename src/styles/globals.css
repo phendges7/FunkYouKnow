@@ -1,0 +1,137 @@
+/* =============================== */
+/*  RESET DE ALTURA SEM BUG SAFARI */
+/* =============================== */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: auto; /* ← remove bug de zoom */
+  min-height: 100%; /* ← altura natural */
+  overflow-x: hidden; /* ← protege contra pixel fantasma lateral */
+}
+
+/* ======================== */
+/* 🌌 BASE GLOBAL DO SITE   */
+/* ======================== */
+
+body {
+  background: radial-gradient(
+    circle at center,
+    #141414 0%,
+    #0e0e0e 40%,
+    #050505 100%
+  );
+  color: whitesmoke;
+  position: relative;
+  -webkit-text-size-adjust: 100%; /* Safari fix */
+}
+
+/* ======================== */
+/* 📦 ROOT CONTAINER        */
+/* ======================== */
+
+#root {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  min-height: 100dvh; /* <-- ESSENCIAL */
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ======================== */
+/* 📄 MAIN GENERAL          */
+/* ======================== */
+main {
+  flex: 1;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* ======================== */
+/* 🎥 BACKGROUND VIDEO WRAPPER */
+/* ======================== */
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh; /* ← substitui 100vh e evita bug no iPhone */
+  display: flex;
+  flex-direction: column;
+}
+
+.app-wrapper > *:not(.global-bg-video-wrapper) {
+  position: relative;
+  z-index: 2;
+}
+
+/* ======================== */
+/* ✨ BOTÕES                 */
+/* ======================== */
+
+.button {
+  width: 150px;
+  padding: 7px 24px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  color: #fff;
+  box-shadow: 0 0 6px rgba(106, 35, 137, 0.7), 0 0 15px rgba(176, 110, 230, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.4s ease,
+    background-position 0.4s ease;
+  background-size: 200% 100%;
+  background-position: 0 0;
+}
+
+/* ======================== */
+/* 🌫️ FADE-IN GLOBAL        */
+/* ======================== */
+/* ← REMOVIDO o transform: scale(1.05) para corrigir o zoom no mobile */
+
+body.fade-enter {
+  opacity: 0;
+  filter: blur(18px);
+}
+
+body.fade-enter-active {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 1.5s ease, filter 1.5s ease;
+}
+
+main.fade-enter {
+  opacity: 0;
+  filter: blur(12px);
+}
+
+main.fade-enter-active {
+  opacity: 1;
+  filter: blur(0);
+  transition: opacity 1s ease, filter 1s ease;
+}
+
+/* ======================== */
+/* 📱 RESPONSIVE FIXES      */
+/* ======================== */
+@media (max-width: 768px) {
+  #root {
+    padding-inline: 15px; /* ← agora seguro, sem overflow */
+  }
+
+  .app-wrapper {
+    min-height: 100dvh; /* garante ajuste correto no iPhone */
+  }
+}

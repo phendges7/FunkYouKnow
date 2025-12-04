@@ -1,6 +1,6 @@
 import "./SongList.css";
 import { useState, useEffect } from "react";
-import { supabase } from "../../utils/supabaseClient";
+import { supabase } from "../../../utils/supabaseClient";
 import SongCard from "../SongCard/SongCard";
 
 const SongList = () => {
@@ -56,7 +56,7 @@ const SongList = () => {
   return (
     <div className="song-list">
       <div className="song-list__header">
-        <h1 className="song-list__title">Most Requested Songs</h1>
+        <h1 className="song-list__title">Requested songs for next party</h1>
         <div className="equalizer">
           <span></span>
           <span></span>

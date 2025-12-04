@@ -1,0 +1,53 @@
+.global-bg-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%; /* ancora no centro do root */
+  transform: translateX(-50%); /* puxa pro meio da viewport */
+  width: 100vw; /* agora é largura da VIEWPORT, não do root */
+  height: 100%; /* continua cobrindo toda a altura do root */
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.global-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.global-bg-video--hidden {
+  opacity: 0;
+}
+
+.global-bg-video--visible {
+  opacity: 1;
+}
+
+.global-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at top,
+      rgba(106, 35, 137, 0.45),
+      transparent 55%
+    ),
+    linear-gradient(to bottom, #0003, #000000d9 90%);
+  mix-blend-mode: multiply;
+}
+
+@media screen and (max-width: 600px) {
+  .global-bg-video{
+    object-fit: contain;
+  }
+}

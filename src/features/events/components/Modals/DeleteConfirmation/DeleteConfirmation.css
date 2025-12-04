@@ -1,0 +1,86 @@
+.popup-confirm {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.popup-confirm__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.popup-confirm__box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 420px);
+  background: #111;
+  border: 1px solid #b06ee6;
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: 0 0 18px rgba(176, 110, 230, 0.3);
+  animation: popupFade 0.25s ease;
+  text-align: center;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.popup-confirm__title {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.popup-confirm__message {
+  color: #ccc;
+  margin-bottom: 1.4rem;
+}
+
+.popup-confirm__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.popup-confirm__cancel {
+  flex: 1;
+  padding: 0.7rem;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup-confirm__cancel:hover {
+  background: #555;
+}
+
+.popup-confirm__confirm {
+  flex: 1;
+  padding: 0.7rem;
+  background: #b06ee6;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.popup-confirm__confirm:hover {
+  background: #d8a0ff;
+}

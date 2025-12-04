@@ -1,0 +1,21 @@
+.admin-nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+.admin-nav__item {
+  color: var(--color-text, #eaeaea);
+  text-decoration: none;
+  font-weight: 600;
+}
+.admin-nav__item--cta {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.admin-nav__item:hover,
+.admin-nav__item--cta:hover {
+  opacity: 0.85;
+}

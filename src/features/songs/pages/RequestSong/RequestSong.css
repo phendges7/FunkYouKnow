@@ -1,0 +1,131 @@
+.request-song {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Urbanist", sans-serif;
+  color: whitesmoke;
+}
+
+.request-song__content {
+  border-radius: 15px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.request-song__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-top: 35px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 8px rgba(106, 35, 137, 0.4),
+    0 0 15px rgba(176, 110, 230, 0.3);
+}
+
+.request-song__description {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #ccc;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.request-song__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 0 15px rgba(106, 35, 137, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.request-song__form:hover {
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.7), 0 0 25px rgba(34, 197, 94, 0.7);
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form__label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.form__input {
+  padding: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.form__input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.form__submit {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.form__submit:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  border-color: white;
+}
+
+@media (max-width: 1024px) {
+  .request-song__content {
+    max-width: 400px;
+    padding: 1rem;
+  }
+
+  .request-song__title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .request-song__content {
+    padding: 1rem;
+    max-width: 80%;
+  }
+
+  .request-song__title {
+    font-size: 1.6rem;
+  }
+
+  .form__input,
+  .form__submit {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}
