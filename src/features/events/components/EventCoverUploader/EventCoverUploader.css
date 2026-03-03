@@ -1,0 +1,29 @@
+.event-cover-uploader {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-cover-uploader__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.event-cover-uploader__input {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.event-cover-uploader__preview {
+  margin-top: 0.75rem;
+  max-width: 220px;
+  border-radius: 6px;
+  overflow: hidden;
+  align-self: center;
+}
+
+.event-cover-uploader__preview img {
+  width: 100%;
+  height: auto;
+}

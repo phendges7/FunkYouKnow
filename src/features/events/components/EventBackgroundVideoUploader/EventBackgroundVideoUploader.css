@@ -1,0 +1,30 @@
+.event-bg-video-uploader {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-bg-video-uploader__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.event-bg-video-uploader__input {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.event-bg-video-uploader__preview {
+  margin-top: 0.75rem;
+  max-width: 320px;
+  border-radius: 6px;
+  overflow: hidden;
+  align-self: center;
+}
+
+.event-bg-video-uploader__preview video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
