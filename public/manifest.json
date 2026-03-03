@@ -1,0 +1,21 @@
+{
+  "name": "FUNK YOU KNOW",
+  "short_name": "F.U.K.",
+  "description": "Brazilian Funk events in the UK — neon, dark, cinematic vibes.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0b0c",
+  "theme_color": "#6a2389",
+  "lang": "en-GB",
+  "categories": ["entertainment", "events", "music", "nightlife"],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "FUNK YOU KNOW — Home"
+    }
+  ]
+}

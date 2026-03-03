@@ -1,0 +1,18 @@
+# robots.txt — F.U.K. Events
+# Instruções para mecanismos de busca
+
+User-agent: *
+Allow: /
+
+# Evita indexar arquivos internos de build ou scripts do Vite
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /dist/
+Disallow: /assets/temp/
+Disallow: /*.map$
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /login
+
+# Sitemap location
+Sitemap: https://funkyouknow.com/sitemap.xml
