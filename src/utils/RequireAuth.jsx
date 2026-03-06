@@ -16,7 +16,7 @@ const RequireAuth = ({ adminOnly = false }) => {
 
   // Se for rota admin e o usuário não for admin
   if (adminOnly && !user.isAdmin) {
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   // Tudo certo

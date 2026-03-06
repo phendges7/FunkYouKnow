@@ -44,7 +44,7 @@ const RequireAuth = ({ adminOnly = false }) => {
     Boolean(user?.app_metadata?.isAdmin);
 
   if (adminOnly && !isAdmin) {
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/admin" replace />;
   }
 
   return <Outlet />;
