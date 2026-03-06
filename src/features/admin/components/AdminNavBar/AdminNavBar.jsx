@@ -29,6 +29,9 @@ const AdminNavBar = () => {
       <Link to="/admin/new-admin" className="admin-nav__item">
         New Admins
       </Link>
+      <Link to="/admin/reset-password" className="admin-nav__item">
+        Reset Passwords
+      </Link>
       <button
         className="admin-nav__item admin-nav__item--cta"
         onClick={handleLogout}

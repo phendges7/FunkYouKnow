@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../../../lib/supabase/supabaseClient";
 import { useAuth } from "../../../context/AuthContext";
+import adminUsersService from "../../../features/admin/services/adminUsersService";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -13,6 +14,8 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [resetMessage, setResetMessage] = useState("");
 
   const from = location.state?.from?.pathname || "/";
 
@@ -50,6 +53,33 @@ const LoginForm = () => {
       setFormError("Unexpected error: " + err.message);
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    setFormError(null);
+    setResetMessage("");
+
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!normalizedEmail) {
+      setFormError("Enter your admin email first to reset the password.");
+      return;
+    }
+
+    setResetting(true);
+
+    try {
+      await adminUsersService.requestAdminPasswordReset({
+        email: normalizedEmail,
+      });
+
+      setResetMessage(
+        "If this admin account exists, a reset link was sent to the email."
+      );
+    } catch (error) {
+      setFormError(error.message || "Could not send reset email.");
+    } finally {
+      setResetting(false);
     }
   };
 
@@ -105,10 +135,27 @@ const LoginForm = () => {
             submitting ? "login__button--loading" : ""
           }`}
           type="submit"
-          disabled={submitting || loading}
+          disabled={submitting || loading || resetting}
         >
           {submitting ? "Signing in..." : "Sign in"}
         </button>
+
+        <div className="login__links">
+          <button
+            type="button"
+            className="login__link-button"
+            disabled={submitting || resetting || loading}
+            onClick={handleForgotPassword}
+          >
+            {resetting ? "Sending reset..." : "Forgot password?"}
+          </button>
+        </div>
+
+        {resetMessage && (
+          <p className="login__message" aria-live="polite">
+            {resetMessage}
+          </p>
+        )}
       </form>
     </section>
   );

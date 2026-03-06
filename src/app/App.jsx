@@ -15,6 +15,7 @@ import EventDetails from "../features/events/pages/EventDetails/EventDetails";
 import About from "../components/sections/About/About";
 import Contact from "../features/contact/pages/Contact/Contact";
 import Login from "../components/sections/LoginForm/LoginForm";
+import ResetPasswordForm from "../components/sections/ResetPasswordForm/ResetPasswordForm";
 
 import RequireAuth from "./routes/RequireAuth";
 import AdminDashboard from "../features/admin/pages/AdminDashboard/AdminDashboard";
@@ -23,6 +24,7 @@ import AdminEventCreate from "../features/events/pages/admin/AdminEventCreate/Ad
 import AdminEventEdit from "../features/events/pages/admin/AdminEventEdit/AdminEventEdit";
 import NewAdminPage from "../features/admin/pages/CreateNewAdmin/CreateNewAdmin";
 import RequestedSongs from "../features/admin/pages/RequestedSongs/RequestedSongs";
+import ResetAdminPassword from "../features/admin/pages/ResetAdminPassword/ResetAdminPassword";
 
 function App() {
   const { bootReady, bootExiting } = useContext(AuthContext);
@@ -45,6 +47,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact-us" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPasswordForm />} />
 
             <Route element={<RequireAuth adminOnly />}>
               <Route path="/admin" element={<AdminDashboard />} />
@@ -58,6 +61,10 @@ function App() {
                 element={<AdminEventEdit />}
               />
               <Route path="/admin/new-admin" element={<NewAdminPage />} />
+              <Route
+                path="/admin/reset-password"
+                element={<ResetAdminPassword />}
+              />
               <Route path="/admin/requests" element={<RequestedSongs />} />
             </Route>
           </Routes>

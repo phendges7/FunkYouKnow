@@ -108,9 +108,35 @@
   text-shadow: 0 0 6px rgba(176, 110, 230, 0.8);
 }
 
+.login__link-button {
+  background: transparent;
+  border: none;
+  color: var(--fyk-lilac);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.login__link-button:hover:not(:disabled) {
+  color: var(--fyk-white);
+  text-shadow: 0 0 6px rgba(176, 110, 230, 0.8);
+}
+
+.login__link-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
 /* ===== ERROR MESSAGE ===== */
 .login__error {
   color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: -5px;
+}
+
+.login__message {
+  color: #9ce7a5;
   font-size: 0.9rem;
   margin-top: -5px;
 }

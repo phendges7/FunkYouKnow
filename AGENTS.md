@@ -173,5 +173,4 @@ When asked to implement something:
 - Return:
   1. A brief plan
   2. The file tree (only affected paths)
-  3. Complete file contents for each changed/new file
 - Keep code blocks separated and labeled by path.
