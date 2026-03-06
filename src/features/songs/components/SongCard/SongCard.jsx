@@ -1,13 +1,22 @@
 import "./SongCard.css";
 import { useState, useRef, useEffect } from "react";
+import { canLikeSong, tryRegisterSongLike } from "../../lib/likeSession";
+import { useToast } from "../../../../context/ToastContext";
 
 const SongCard = ({ id, rank, title, artist, likes, onLike }) => {
   const titleRef = useRef(null);
   const artistRef = useRef(null);
   const [liked, setLiked] = useState(false);
+  const { showToast } = useToast();
 
   const handleLikeClick = () => {
-    setLiked(!liked);
+    const result = tryRegisterSongLike(id);
+
+    if (!result.allowed) {
+      showToast("You already liked this song recently!", "error");
+      return;
+    }
+    setLiked(true);
     onLike(id, likes);
   };
 
@@ -21,7 +30,14 @@ const SongCard = ({ id, rank, title, artist, likes, onLike }) => {
     if (artistRef.current && checkOverflow(artistRef.current)) {
       artistRef.current.classList.add("scrolling-text");
     }
-  }, []);
+
+    const likeStatus = canLikeSong(id);
+    if (!likeStatus.allowed) {
+      setLiked(true);
+    } else {
+      setLiked(false);
+    }
+  }, [id]);
 
   return (
     <div className="song-card">

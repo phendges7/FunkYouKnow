@@ -14,9 +14,9 @@
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--space-lg);
   flex-wrap: wrap;
-  gap: 24px;
+  gap: var(--space-lg);
 }
 
 /* TÍTULO */
@@ -40,7 +40,7 @@
 }
 
 .footer__rights {
-  margin: 4px 0 0;
+  margin: var(--space-xs) 0 0;
   font-size: 0.9rem;
   opacity: 0.7;
 }
@@ -86,14 +86,14 @@
 
   .footer__social {
     flex-direction: row;
-    gap: 16px;
+    gap: var(--space-md);
   }
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
   .footer {
-    padding: 24px 0 48px;
+    padding: var(--space-lg) 0 48px;
   }
 
   .footer__social {
@@ -117,3 +117,5 @@
     font-size: 0.95rem;
   }
 }
+
+

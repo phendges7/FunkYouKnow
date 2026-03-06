@@ -6,7 +6,7 @@ export default function usePageFade() {
 
     const isFirstVisit = !hasVisited;
     const target = isFirstVisit
-      ? document.body
+      ? document.querySelector(".app-shell")
       : document.querySelector("main");
 
     if (!target) return;

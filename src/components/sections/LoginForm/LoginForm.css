@@ -15,7 +15,7 @@
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 15px;
-  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 50%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--fyk-purple) 0%, var(--fyk-lilac) 50%, var(--fyk-white) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 8px rgba(106, 35, 137, 0.4),
@@ -53,9 +53,9 @@
   margin-top: 5px;
   padding: 10px 12px;
   background-color: #1a1a1a;
-  color: #fff;
+  color: var(--fyk-white);
   border: 1px solid #444;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s ease;
@@ -63,7 +63,7 @@
 
 .login__input:focus {
   outline: none;
-  border-color: #b06ee6;
+  border-color: var(--fyk-lilac);
   box-shadow: 0 0 10px rgba(176, 110, 230, 0.6);
 }
 
@@ -71,10 +71,10 @@
 .login__button {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  color: white;
+  color: var(--fyk-white);
   border: 2px solid rgba(255, 255, 255, 0.3);
   padding: 1rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
@@ -87,7 +87,7 @@
 .login__button:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
-  border-color: white;
+  border-color: var(--fyk-white);
 }
 
 /* ===== LINKS (Sign up / Forgot) ===== */
@@ -98,13 +98,13 @@
 }
 
 .login__link {
-  color: #b06ee6;
+  color: var(--fyk-lilac);
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .login__link:hover {
-  color: #fff;
+  color: var(--fyk-white);
   text-shadow: 0 0 6px rgba(176, 110, 230, 0.8);
 }
 
@@ -127,7 +127,7 @@
 }
 
 .login__cancel:hover {
-  color: #fff;
+  color: var(--fyk-white);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -157,3 +157,5 @@
     font-size: 1rem;
   }
 }
+
+

@@ -1,36 +1,59 @@
-/**
- * Handles selection of new gallery files before upload.
- */
-
 import { useState } from "react";
 
-const useGalleryUpload = () => {
-  const [galleryFiles, setGalleryFiles] = useState([]);
+/**
+ * Manages client-side gallery selection & previews.
+ * Does NOT upload or persist anything.
+ */
+const MAX_FILES_PER_BATCH = 10;
 
-  const handleGalleryUpload = (e) => {
-    const files = Array.from(e.target.files);
+const useGalleryUpload = (initialItems = []) => {
+  const [galleryItems, setGalleryItems] = useState(initialItems);
+  const [error, setError] = useState(null);
 
-    // Validate file count
-    if (files.length > 10) {
-      alert("Please, select at max 10 files each time.");
-      e.target.value = ""; // Clear the input
+  const addFiles = (fileList) => {
+    const files = Array.from(fileList);
+    setError(null);
+
+    if (files.length > MAX_FILES_PER_BATCH) {
+      setError("You can upload up to 10 images at a time.");
       return;
     }
 
-    // Validate file types
     const invalidFiles = files.filter(
-      (file) => !file.type.startsWith("image/")
+      (file) => !file.type.startsWith("image/"),
     );
+
     if (invalidFiles.length > 0) {
-      alert("Please, only images allowed");
-      e.target.value = ""; // Clear the input
+      setError("Only image files are allowed.");
       return;
     }
 
-    setGalleryFiles(files);
+    const mapped = files.map((file) => ({
+      id: crypto.randomUUID(),
+      file,
+      previewUrl: URL.createObjectURL(file),
+      isNew: true,
+    }));
+
+    setGalleryItems((prev) => [...prev, ...mapped]);
   };
 
-  return { galleryFiles, setGalleryFiles, handleGalleryUpload };
+  const removeItem = (id) => {
+    setGalleryItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const resetGallery = () => {
+    setGalleryItems([]);
+    setError(null);
+  };
+
+  return {
+    galleryItems,
+    addFiles,
+    removeItem,
+    resetGallery,
+    error,
+  };
 };
 
 export default useGalleryUpload;

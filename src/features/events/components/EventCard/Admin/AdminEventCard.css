@@ -33,7 +33,7 @@
 }
 
 .admin-event-card__status span {
-  color: #b06ee6;
+  color: var(--fyk-lilac);
 }
 
 .admin-event-card__date {
@@ -61,12 +61,12 @@
 /* EDITAR */
 .admin-event-card__edit-btn {
   background: transparent;
-  border: 1px solid #b06ee6;
-  color: #b06ee6;
+  border: 1px solid var(--fyk-lilac);
+  color: var(--fyk-lilac);
 }
 .admin-event-card__edit-btn:hover {
-  background: #b06ee6;
-  color: #fff;
+  background: var(--fyk-lilac);
+  color: var(--fyk-white);
 }
 
 /* DELETAR */
@@ -77,5 +77,11 @@
 }
 .admin-event-card__delete-btn:hover {
   background: #ff4d6d;
-  color: #fff;
+  color: var(--fyk-white);
 }
+
+
+
+
+
+

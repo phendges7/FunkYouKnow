@@ -5,21 +5,19 @@ export const eventsService = {
     const { data, error } = await supabase
       .from("events")
       .select(
-        "id, name, slug, description, location, status, date, thumbnail_url, background_video_url, created_at, deleted_at"
+        "id, name, slug, description, location, status, date, thumbnail_url, background_video_url, created_at, deleted_at, ticket_url",
       )
-      .order("date", { ascending: false });
+      .is("deleted_at", null)
+      .order("date", { descending: true });
 
     if (error) throw error;
-
-    // deixa o filtro published/deleted_at pro caller quando precisar
     return data;
   },
-
   async getEventBySlug(slug) {
     const { data, error } = await supabase
       .from("events")
       .select(
-        "id, name, slug, description, location, status, date, thumbnail_url, background_video_url"
+        "id, name, slug, description, location, status, date, thumbnail_url, background_video_url",
       )
       .eq("slug", slug)
       .is("deleted_at", null)
@@ -33,7 +31,7 @@ export const eventsService = {
     const { data, error } = await supabase
       .from("events")
       .select(
-        "id, name, slug, description, location, status, date, thumbnail_url, background_video_url, created_by, created_at, updated_by"
+        "id, name, slug, description, location, status, date, thumbnail_url, background_video_url, created_by, created_at, updated_by, ticket_url",
       )
       .eq("id", id)
       .single();

@@ -3,40 +3,38 @@
  */
 
 import { useEffect, useState } from "react";
-import { eventsService } from "../services/eventsService";
 import { eventMediaService } from "../services/eventMediaService";
+import { useEventBySlug } from "../../../hooks/queries/useEventBySlug";
 
 export default function useFetchEventDetails(slug) {
-  const [event, setEvent] = useState(null);
   const [media, setMedia] = useState({ cover: null, gallery: [] });
-  const [loading, setLoading] = useState(true);
+  const { data: event, isLoading } = useEventBySlug(slug);
 
   useEffect(() => {
-    const loadEvent = async () => {
+    if (!event?.id) {
+      setMedia({ cover: null, gallery: [] });
+      return;
+    }
+
+    const loadMedia = async () => {
       try {
-        const data = await eventsService.getEventBySlug(slug);
-        setEvent(data);
+        const [coverItems, galleryItems] = await Promise.all([
+          eventMediaService.getByEvent(event.id, "cover"),
+          eventMediaService.getByEvent(event.id, "gallery"),
+        ]);
 
-        if (data?.id) {
-          const [coverItems, galleryItems] = await Promise.all([
-            eventMediaService.getByEvent(data.id, "cover"),
-            eventMediaService.getByEvent(data.id, "gallery"),
-          ]);
-
-          setMedia({
-            cover: coverItems && coverItems[0] ? coverItems[0] : null,
-            gallery: galleryItems || [],
-          });
-        }
+        setMedia({
+          cover: coverItems && coverItems[0] ? coverItems[0] : null,
+          gallery: galleryItems || [],
+        });
       } catch (err) {
         console.error("Erro ao carregar evento:", err.message);
-      } finally {
-        setLoading(false);
+        setMedia({ cover: null, gallery: [] });
       }
     };
 
-    loadEvent();
-  }, [slug]);
+    loadMedia();
+  }, [event]);
 
-  return { event, media, loading };
+  return { event, media, loading: isLoading };
 }

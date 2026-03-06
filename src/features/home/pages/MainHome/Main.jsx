@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import usePageFade from "../../../../hooks/usePageFade";
 
 import SongList from "../../../songs/components/SongList/SongList";
 import "./Main.css";
 
 const Main = () => {
+  usePageFade();
+
   const navigate = useNavigate();
   return (
     <div className="main">
@@ -16,7 +19,10 @@ const Main = () => {
           Join us on a journey through sound and rhythm.
         </p>
         <div className="main__buttons">
-          <button className="main__button button" onClick={() => navigate("/")}>
+          <button
+            className="main__button button"
+            onClick={() => navigate("/events")}
+          >
             BUY TICKETS
           </button>
           <button

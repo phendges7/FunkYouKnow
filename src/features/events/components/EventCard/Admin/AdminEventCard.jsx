@@ -2,11 +2,11 @@ import "./AdminEventCard.css";
 
 const AdminEventCard = ({ event, onEdit, onDelete }) => {
   const cover =
-    event.thumbnail_url || "https://placehold.co/600x400?text=Sem+Imagem";
+    event.thumbnail_url || "https://placehold.co/600x400?text=No+Image";
 
   const formatDate = (date) => {
-    if (!date) return "Sem data";
-    return new Date(date).toLocaleDateString("pt-BR", {
+    if (!date) return "No date";
+    return new Date(date).toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -27,16 +27,16 @@ const AdminEventCard = ({ event, onEdit, onDelete }) => {
         </p>
 
         <p className="admin-event-card__date">
-          Criado em: {formatDate(event.created_at)}
+          Created on: {formatDate(event.created_at)}
         </p>
 
         <div className="admin-event-card__actions">
           <button className="admin-event-card__edit-btn" onClick={onEdit}>
-            ✏️ Editar
+            ✏️ Edit
           </button>
 
           <button className="admin-event-card__delete-btn" onClick={onDelete}>
-            🗑️ Deletar
+            🗑️ Delete
           </button>
         </div>
       </div>

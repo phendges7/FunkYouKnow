@@ -1,42 +1,37 @@
-/**
- * Deletes a gallery image: removes from Supabase Storage and event_media table,
- * then updates the event description/photos.
- */
-
-import { supabase } from "../../../lib/supabase/supabaseClient";
-import { extractStoragePath } from "./eventFormUtils";
+import { useState } from "react";
 import { eventMediaService } from "../services/eventMediaService";
 
-const useGalleryDelete = (form, setForm, event) => {
-  const deleteGalleryPhoto = async (url) => {
+/**
+ * Handles hard deletion of gallery items.
+ */
+const useGalleryDelete = (onDeleted) => {
+  const [deletingId, setDeletingId] = useState(null);
+  const [error, setError] = useState(null);
+
+  const deleteGalleryItem = async (item) => {
     try {
-      const path = extractStoragePath(url);
-      if (!path) return;
+      setDeletingId(item.id);
+      setError(null);
 
-      // Remove do storage
-      const { error: storageError } = await supabase.storage
-        .from("events")
-        .remove([path]);
+      await eventMediaService.deleteGalleryItem({
+        id: item.id,
+        fullStoragePath: item.full_storage_path,
+      });
 
-      if (storageError) throw storageError;
-
-      // Remove da tabela event_media (se tiver event.id)
-      if (event?.id) {
-        await eventMediaService.deleteByPublicUrl(event.id, url);
-      }
-
-      // Atualiza estado local
-      setForm((prev) => ({
-        ...prev,
-        photos: prev.photos.filter((p) => p !== url),
-      }));
+      onDeleted?.(item.id);
     } catch (err) {
-      console.error(err.message);
-      alert("Error deleting image.");
+      console.error("[useGalleryDelete]", err);
+      setError("Failure deleting gallery item.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
-  return { deleteGalleryPhoto };
+  return {
+    deleteGalleryItem,
+    deletingId,
+    error,
+  };
 };
 
 export default useGalleryDelete;

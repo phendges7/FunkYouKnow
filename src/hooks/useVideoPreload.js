@@ -1,37 +1,69 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useVideoPreload = (videoUrl) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const preloadRef = useRef(null);
 
   useEffect(() => {
-    if (!videoUrl) {
-      setIsLoaded(false);
-      return;
+    setLoaded(false);
+
+    // Cleanup any previous preloader
+    if (preloadRef.current) {
+      try {
+        preloadRef.current.pause();
+        preloadRef.current.removeAttribute("src");
+        preloadRef.current.load();
+      } catch {
+        // ignore
+      }
+      preloadRef.current = null;
     }
 
-    const video = document.createElement("video");
-    video.src = videoUrl;
-    video.preload = "auto";
+    if (!videoUrl) return;
 
-    const handleLoaded = () => {
-      setIsLoaded(true);
+    const video = document.createElement("video");
+    preloadRef.current = video;
+
+    video.muted = false;
+    video.playsInline = true;
+    video.preload = "auto";
+    video.src = videoUrl;
+
+    // Consider it "loaded" once the browser has enough data to start playback
+    const onCanPlay = () => setLoaded(true);
+
+    // IMPORTANT: navigation cancels are normal; don't log as errors
+    const onError = () => {
+      // stay false; no console error spam
+      setLoaded(false);
     };
 
-    video.addEventListener("loadeddata", handleLoaded);
-    video.addEventListener("error", () => {
-      console.error("Failed to preload video:", videoUrl);
-      setIsLoaded(false);
-    });
+    video.addEventListener("canplaythrough", onCanPlay, { once: true });
+    video.addEventListener("error", onError);
 
-    // Start preloading
-    video.load();
+    // Kick the request
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        // autoplay restrictions / cancellation — normal, ignore
+      });
+    }
 
     return () => {
-      video.removeEventListener("loadeddata", handleLoaded);
-      // Clean up the video element
-      video.src = "";
+      video.removeEventListener("canplaythrough", onCanPlay);
+      video.removeEventListener("error", onError);
+
+      try {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      } catch {
+        // ignore
+      }
+
+      if (preloadRef.current === video) preloadRef.current = null;
     };
   }, [videoUrl]);
 
-  return isLoaded;
+  return loaded;
 };

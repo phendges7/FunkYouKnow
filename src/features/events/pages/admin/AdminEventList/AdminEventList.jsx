@@ -24,7 +24,7 @@ const AdminEventsList = () => {
       setEvents(data);
     } catch (err) {
       console.error("Erro ao carregar eventos:", err.message);
-      setError("Não foi possível carregar os eventos.");
+      setError("Could not load events.");
     } finally {
       setLoading(false);
     }
@@ -52,12 +52,12 @@ const AdminEventsList = () => {
       } = await supabase.auth.getUser();
 
       if (userError) throw userError;
-      if (!user?.id) throw new Error("Usuário não autenticado.");
+      if (!user?.id) throw new Error("User not authenticated.");
 
       const userId = user.id;
 
       if (!userId) {
-        throw new Error("Usuário não autenticado.");
+        throw new Error("User not authenticated.");
       }
 
       // 🔥 Soft delete com ID real do admin
@@ -68,14 +68,14 @@ const AdminEventsList = () => {
       await loadEvents();
     } catch (err) {
       console.error("Erro ao deletar evento:", err.message);
-      setError("Não foi possível deletar o evento.");
+      setError("Could not delete the event.");
       setShowModal(false);
       setSelectedEvent(null);
     }
   };
 
   if (loading) {
-    return <div className="admin-events__loading">Carregando eventos...</div>;
+    return <div className="admin-events__loading">Loading events...</div>;
   }
 
   if (error) {
@@ -85,17 +85,17 @@ const AdminEventsList = () => {
   return (
     <section className="admin-events">
       <div className="admin-events__header">
-        <h1 className="admin-events__title">Eventos</h1>
+        <h1 className="admin-events__title">Events</h1>
         <button
           className="admin-events__create-btn"
           onClick={() => navigate("/admin/events/create")}
         >
-          + Criar Evento
+          + Create Event
         </button>
       </div>
 
       {events.length === 0 ? (
-        <p className="admin-events__empty">Nenhum evento cadastrado.</p>
+        <p className="admin-events__empty">No events created yet.</p>
       ) : (
         <div className="admin-events__grid">
           {events.map((event) => (
@@ -111,10 +111,10 @@ const AdminEventsList = () => {
 
       <PopupDeleteConfirmation
         visible={showModal}
-        title="Excluir Evento"
+        title="Delete Event"
         message={
           selectedEvent
-            ? `Tem certeza que deseja excluir o evento "${selectedEvent.name}"?`
+            ? `Are you sure you want to delete the event "${selectedEvent.name}"?`
             : ""
         }
         onCancel={() => {

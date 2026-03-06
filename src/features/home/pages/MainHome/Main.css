@@ -17,7 +17,7 @@
   margin: 0;
   font-size: clamp(2.5rem, 6vw, 5rem);
   text-transform: uppercase;
-  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 20%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--fyk-purple) 0%, var(--fyk-lilac) 20%, var(--fyk-white) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -42,8 +42,8 @@
 }
 
 .main__button {
-  background-color: #6a2389;
-  color: white;
+  background-color: var(--fyk-purple);
+  color: var(--fyk-white);
 }
 
 /* Tablets (até 1024px) */
@@ -105,3 +105,4 @@
     padding: 0 15px;
   }
 }
+

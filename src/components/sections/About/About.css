@@ -21,7 +21,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   margin-bottom: 15px;
-  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 50%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--fyk-purple) 0%, var(--fyk-lilac) 50%, var(--fyk-white) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
@@ -57,7 +57,7 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: linear-gradient(90deg, #b06ee6 0%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--fyk-lilac) 0%, var(--fyk-white) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -76,7 +76,7 @@
   padding: 25px;
   border: 1px solid #333;
   width: 350px;
-  border-radius: 16px;
+  border-radius: var(--border-radius-lg);
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
@@ -114,7 +114,7 @@
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   font-weight: 600;
   margin-bottom: 15px;
-  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 50%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--fyk-purple) 0%, var(--fyk-lilac) 50%, var(--fyk-white) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -194,3 +194,5 @@
     font-size: 1rem;
   }
 }
+
+

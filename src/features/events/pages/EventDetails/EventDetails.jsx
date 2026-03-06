@@ -1,90 +1,92 @@
-import { useEffect, useState, useCallback } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-
-import { eventsService } from "../../services/eventsService";
-import { eventMediaService } from "../../services/eventMediaService";
 
 import ModalGallery from "../../../../components/media/ModalGallery/ModalGallery";
 import usePageFade from "../../../../hooks/usePageFade";
-
-import { useBackgroundVideo } from "../../../../hooks/useBackgroundVideo";
+import { useEventBySlug } from "../../../../hooks/queries/useEventBySlug";
 
 import defaultCover from "../../../../assets/cover_image_default.png";
+
+import EventHero from "./components/EventHero/EventHero";
+import EventInfo from "./components/EventInfo/EventInfo";
+import EventGallerySection from "./components/EventGallerySection/EventGallerySection";
+
+import useEventTicketsCTA from "./hooks/useEventTicketsCTA";
+import useEventGalleryLazy from "./hooks/useEventGalleryLazy";
+import useEventBackgroundVideo from "./hooks/useEventBackgroundVideo";
+import useModalGallery from "./hooks/useModalGallery";
+
 import "./EventDetails.css";
 
 const EventDetails = () => {
   usePageFade();
 
   const { slug } = useParams();
-  const { videoUrl, setBackgroundVideo, clearBackgroundVideo, videoRef } =
-    useBackgroundVideo();
-  const [isMuted, setIsMuted] = useState(true);
 
-  const [event, setEvent] = useState(null);
-  const [gallery, setGallery] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalIndex, setModalIndex] = useState(0);
+  const {
+    data: event,
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+  } = useEventBySlug(slug);
 
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
-    }
-  };
+  const {
+    id: eventId,
+    name,
+    description,
+    thumbnail_url,
+    date,
+    location,
+    background_video_url,
+    ticket_url,
+  } = event || {};
 
-  // Memoize the load function to prevent unnecessary re-renders
-  const loadEventData = useCallback(async () => {
-    try {
-      setLoading(true);
-      const data = await eventsService.getEventBySlug(slug);
+  const perfMode =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("perf") === "1";
 
-      if (!data) {
-        setEvent(null);
-        clearBackgroundVideo();
-        return;
-      }
+  const formattedDate = useMemo(
+    () =>
+      date
+        ? new Date(date).toLocaleString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })
+        : "Date TBD",
+    [date],
+  );
 
-      setEvent(data);
+  const coverSrc = useMemo(
+    () => thumbnail_url || defaultCover,
+    [thumbnail_url],
+  );
 
-      // Set background video only if it exists and is different from current
-      if (data?.background_video_url) {
-        setBackgroundVideo(data.background_video_url);
-      } else {
-        clearBackgroundVideo();
-      }
+  // ✅ Tickets CTA (page rule)
+  const ticketCta = useEventTicketsCTA({ date, ticket_url });
 
-      // Load gallery only if event has ID
-      if (data?.id) {
-        try {
-          const media = await eventMediaService.getGalleryByEvent(data.id);
-          setGallery(media.map((m) => m.public_url));
-        } catch (mediaError) {
-          console.error("Erro ao carregar galeria:", mediaError.message);
-          setGallery([]);
-        }
-      }
-    } catch (err) {
-      console.error("Erro ao carregar evento:", err.message);
-      clearBackgroundVideo();
-      setEvent(null);
-    } finally {
-      setLoading(false);
-    }
-  }, [slug, setBackgroundVideo, clearBackgroundVideo]);
+  // ✅ Background video orchestration (page rule that uses global context hook)
+  const { videoUrl, isMuted, toggleMute } = useEventBackgroundVideo({
+    eventExists: Boolean(event),
+    backgroundVideoUrl: background_video_url,
+  });
 
-  useEffect(() => {
-    loadEventData();
-  }, [loadEventData]);
+  // ✅ Gallery lazy loading + thumbs mapping (page rule)
+  const {
+    galleryItems,
+    galleryStatus,
+    shouldRenderGallery,
+    sentinelRef,
+    modalPhotos,
+  } = useEventGalleryLazy(eventId);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      clearBackgroundVideo();
-    };
-  }, [clearBackgroundVideo]);
+  // ✅ Modal UI state (page rule)
+  const { modalOpen, modalIndex, openModal, closeModal, navigateModal } =
+    useModalGallery(galleryItems.length);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <main className="event-details event-details--loading">
         <div className="event-details__loader" />
@@ -92,111 +94,65 @@ const EventDetails = () => {
     );
   }
 
-  if (!event) {
+  if (isError) {
     return (
-      <main className="event-details">
-        <h1>Evento não encontrado.</h1>
+      <main className="event-details event-details--error">
+        <h1>Event not found</h1>
+        <p className="event-details__error">
+          {error?.message || "Could not load event. Try again."}
+        </p>
+        <button
+          type="button"
+          className="event-details__retry"
+          onClick={() => refetch()}
+          disabled={isFetching}
+        >
+          {isFetching ? "Retrying..." : "Retry"}
+        </button>
       </main>
     );
   }
 
-  const {
-    name,
-    description,
-    thumbnail_url,
-    date,
-    location,
-    background_video_url,
-  } = event;
-
-  const formattedDate = date
-    ? new Date(date).toLocaleString("pt-BR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      })
-    : "Data a definir";
-
-  const coverSrc = thumbnail_url || defaultCover;
-
-  const openModal = (index) => {
-    setModalIndex(index);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => setModalOpen(false);
-
-  const navigateModal = (direction) => {
-    setModalIndex((prev) => {
-      const total = gallery.length;
-      if (!total) return prev;
-      return (prev + direction + total) % total;
-    });
-  };
+  if (!event) {
+    return (
+      <main className="event-details">
+        <h1>Event not found</h1>
+      </main>
+    );
+  }
 
   return (
-    <main className="event-details">
-      {/* Capa somente sem vídeo */}
-      {!background_video_url && (
-        <section className="event-cover">
-          <img
-            src={coverSrc}
-            alt={name}
-            className="event-cover__img"
-            loading="lazy"
-          />
-          <div className="event-cover__overlay" />
-          <h1 className="event-cover__title">{name}</h1>
-        </section>
-      )}
+    <main
+      className={`event-details${perfMode ? " event-details--perf" : ""}`}
+      data-perf-mode={perfMode ? "1" : "0"}
+    >
+      <EventHero
+        name={name}
+        coverSrc={coverSrc}
+        backgroundVideoUrl={background_video_url}
+        videoUrl={videoUrl}
+        isMuted={isMuted}
+        onToggleMute={toggleMute}
+      />
 
-      {/* Título flutuante quando vídeo existe */}
-      {background_video_url && (
-        <div className="event-hero-title">
-          <h1 className="event-hero-title__text">{name}</h1>
+      <EventInfo
+        formattedDate={formattedDate}
+        location={location}
+        description={description}
+        ticketCta={ticketCta}
+      />
 
-          {/* Mute Button - Only show when video is present */}
-          {videoUrl && (
-            <button
-              className="event-mute-btn"
-              onClick={toggleMute}
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-            >
-              {isMuted ? "🔇" : "🔊"}
-            </button>
-          )}
-        </div>
-      )}
-
-      <section className="event-info">
-        <p className="event-info__date">DATA: {formattedDate}</p>
-        <p className="event-info__location">
-          LOCAL: {location || "Local a definir"}
-        </p>
-        <p className="event-info__description">{description || ""}</p>
-      </section>
-
-      {gallery.length > 0 && (
-        <section className="event-gallery">
-          <h2 className="event-gallery__title">Galeria</h2>
-          <div className="event-gallery__grid">
-            {gallery.map((photo, index) => (
-              <img
-                key={photo}
-                src={photo}
-                alt={`Foto ${index + 1}`}
-                className="event-gallery__img"
-                onClick={() => openModal(index)}
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      <EventGallerySection
+        sentinelRef={sentinelRef}
+        shouldRender={shouldRenderGallery}
+        status={galleryStatus}
+        items={galleryItems}
+        onOpenModal={openModal}
+      />
 
       {modalOpen && (
         <ModalGallery
-          photos={gallery}
+          photos={modalPhotos}
           index={modalIndex}
           onClose={closeModal}
           onNavigate={navigateModal}

@@ -24,7 +24,7 @@
 }
 
 .song-card__rank {
-  color: #6a2389;
+  color: var(--fyk-purple);
   font-weight: bold;
   font-size: larger;
   text-shadow: 0 0 8px rgba(106, 35, 137, 0.4),
@@ -76,7 +76,7 @@
 .like-icon {
   width: 28px;
   height: 28px;
-  stroke: #6a2389;
+  stroke: var(--fyk-purple);
   stroke-width: 2;
   fill: none;
   cursor: pointer;
@@ -85,15 +85,15 @@
 }
 
 .like-icon:hover {
-  stroke: #b06ee6;
+  stroke: var(--fyk-lilac);
   transform: scale(1.15);
   filter: drop-shadow(0 0 10px rgba(176, 110, 230, 0.8));
 }
 
 /* 💜 Estado ativo (curtido) */
 .like-icon--active {
-  fill: #b06ee6;
-  stroke: #b06ee6;
+  fill: var(--fyk-lilac);
+  stroke: var(--fyk-lilac);
   filter: drop-shadow(0 0 15px rgba(176, 110, 230, 0.9));
   transform: scale(1.2);
   animation: pulse-like 0.5s ease;
@@ -173,3 +173,4 @@
     height: 20px;
   }
 }
+

@@ -1,6 +1,6 @@
 .admin-events {
   padding: 2rem;
-  color: #fff;
+  color: var(--fyk-white);
   font-family: "Urbanist", sans-serif;
 }
 
@@ -15,16 +15,16 @@
 .admin-events__title {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 50%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--fyk-purple) 0%, var(--fyk-lilac) 50%, var(--fyk-white) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .admin-events__create-btn {
-  background: linear-gradient(90deg, #6a2389 0%, #b06ee6 100%);
-  color: #fff;
+  background: linear-gradient(90deg, var(--fyk-purple) 0%, var(--fyk-lilac) 100%);
+  color: var(--fyk-white);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   padding: 0.75rem 1.5rem;
   font-weight: 600;
   cursor: pointer;
@@ -50,3 +50,9 @@
   font-size: 1.1rem;
   opacity: 0.8;
 }
+
+
+
+
+
+

@@ -18,7 +18,7 @@
   transform: translate(-50%, -50%);
   width: min(90%, 420px);
   background: #111;
-  border: 1px solid #b06ee6;
+  border: 1px solid var(--fyk-lilac);
   border-radius: 12px;
   padding: 1.8rem;
   box-shadow: 0 0 18px rgba(176, 110, 230, 0.3);
@@ -38,7 +38,7 @@
 }
 
 .popup-confirm__title {
-  color: #fff;
+  color: var(--fyk-white);
   font-size: 1.4rem;
   margin-bottom: 1rem;
 }
@@ -58,9 +58,9 @@
   flex: 1;
   padding: 0.7rem;
   background: #444;
-  color: #fff;
+  color: var(--fyk-white);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: 0.3s;
 }
@@ -72,10 +72,10 @@
 .popup-confirm__confirm {
   flex: 1;
   padding: 0.7rem;
-  background: #b06ee6;
+  background: var(--fyk-lilac);
   color: #111;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
@@ -84,3 +84,9 @@
 .popup-confirm__confirm:hover {
   background: #d8a0ff;
 }
+
+
+
+
+
+

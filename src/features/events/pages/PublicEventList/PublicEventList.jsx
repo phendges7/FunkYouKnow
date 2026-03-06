@@ -1,35 +1,21 @@
-import { useEffect, useState } from "react";
-import { eventsService } from "../../services/eventsService";
 import usePageFade from "../../../../hooks/usePageFade";
 import EventCard from "../../components/EventCard/User/UserEventCard";
+import { usePublishedEvents } from "../../../../hooks/queries/usePublishedEvents";
 import "./PublicEventList.css";
 
-const Events = () => {
+const PublicEventList = () => {
   usePageFade();
 
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const {
+    data: events = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+  } = usePublishedEvents();
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const data = await eventsService.getAllEvents();
-        const published = data.filter(
-          (e) => e.status === "published" && e.deleted_at === null
-        );
-        setEvents(published);
-      } catch (err) {
-        console.error("Error loading events: ", err.message);
-        setError("Not possible loading events!");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchEvents();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <main className="events-content">
         <h1>Events</h1>
@@ -42,19 +28,32 @@ const Events = () => {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <main className="events-content">
         <h1>Events</h1>
-        <p className="events__error">{error}</p>
+        <p className="events__error">
+          {error?.message || "Could not load events. Try again."}
+        </p>
+
+        <button
+          type="button"
+          className="events__retry"
+          onClick={() => refetch()}
+          disabled={isFetching}
+        >
+          {isFetching ? "Retrying..." : "Retry"}
+        </button>
       </main>
     );
   }
+
   return (
     <main className="events-content">
       <h1>Events</h1>
+
       {events.length === 0 ? (
-        <p className="events__empty">Nenhum evento publicado ainda.</p>
+        <p className="events__empty">No events published yet.</p>
       ) : (
         <div className="events-grid">
           {events.map((event) => (
@@ -66,4 +65,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default PublicEventList;

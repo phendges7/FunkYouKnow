@@ -14,7 +14,7 @@ const Footer = () => {
         {/* MIDDLE TEXT */}
         <div className="footer__mid">
           <p className="footer__phrase">TUDO NOSSO, NADA DELES</p>
-          <p className="footer__rights">© 2025 — All rights reserved.</p>
+          <p className="footer__rights">© 2026 — All rights reserved.</p>
         </div>
 
         {/* SOCIAL */}

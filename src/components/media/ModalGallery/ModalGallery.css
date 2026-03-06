@@ -90,10 +90,10 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   background: rgba(20, 20, 20, 0.65);
   border: none;
-  color: #fff;
+  color: var(--fyk-white);
   border-radius: 50%;
   padding: 0.55rem 0.75rem;
   cursor: pointer;
@@ -101,20 +101,69 @@
 }
 
 .gallery-modal__close:hover {
-  background: #e50914; /* UPDATED */
+  background: #e50914;
 }
 
 /* =============================== */
 /*           THUMBNAILS            */
 /* =============================== */
 
-.gallery-modal__thumbnails {
-  margin-top: 15px;
-  display: grid;
-  gap: 10px;
+.gallery-modal__thumbnails-carousel {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  overflow-y: hidden;
 
-  /* NEW — responsive grid */
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* hide scrollbar but keep scrolling */
+.gallery-modal__thumbnails-carousel::-webkit-scrollbar {
+  display: none;
+}
+.gallery-modal__thumbnails-carousel {
+  scrollbar-width: none;
+}
+
+.gallery-modal__thumbnail {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+
+  border: none;
+  padding: 0;
+  background: none;
+
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+
+  scroll-snap-align: start;
+
+  opacity: 0.6;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gallery-modal__thumbnail:hover {
+  opacity: 0.85;
+}
+
+.gallery-modal__thumbnail--active {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.gallery-modal__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .gallery-modal__thumb {

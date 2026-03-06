@@ -18,7 +18,7 @@
   transition: transform 0.4s ease, filter 0.8s ease 0.1s;
 }
 .nav__item:hover {
-  color: #6a2389;
+  color: var(--fyk-purple);
   transform: scale(1.1);
   filter: drop-shadow(0 0 12px rgba(106, 35, 137, 1)); /* roxo principal */
 }
@@ -34,3 +34,5 @@
     font-size: 20px;
   }
 }
+
+

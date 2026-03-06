@@ -23,8 +23,8 @@ const AdminEventEdit = () => {
     fetchEvent();
   }, [id]);
 
-  if (loading) return <p>Carregando evento...</p>;
-  if (!event) return <p>Evento não encontrado.</p>;
+  if (loading) return <p>Loading event...</p>;
+  if (!event) return <p>Event not found.</p>;
 
   return (
     <section>

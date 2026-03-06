@@ -1,5 +1,3 @@
-import "./Toast.css";
-
 const Toast = ({ message, type = "success", visible }) => {
   if (!visible) return null;
 

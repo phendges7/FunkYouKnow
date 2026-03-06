@@ -23,10 +23,78 @@
   align-items: center;
   min-height: 2rem;
 }
+
+/* Skeleton do Header */
+.header__nav-skeleton {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header__nav-skeleton-item {
+  width: 70px;
+  height: 16px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(80, 80, 80, 0.4),
+    rgba(150, 150, 150, 0.15),
+    rgba(80, 80, 80, 0.4)
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.4s ease infinite;
+}
+
+@keyframes skeletonPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.header__nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Admin pill */
+.header__admin-pill {
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+
+  background: rgba(106, 35, 137, 0.4);
+  color: var(--fyk-white);
+
+  border: 1px solid rgba(106, 35, 137, 0.9);
+  backdrop-filter: blur(4px);
+
+  cursor: pointer;
+  white-space: nowrap; /* evita quebrar em duas linhas estranhas */
+  transition: 0.25s ease;
+}
+
+.header__admin-pill:hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: rgba(34, 197, 94, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.header__admin-pill:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 .header__skeleton {
   width: 320px;
   height: 20px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   background: linear-gradient(90deg, #222 0%, #333 50%, #222 100%);
   background-size: 320px 100%;
   animation: header-shimmer 1.3s infinite linear;
@@ -51,4 +119,31 @@
   .header__logo {
     margin: 0 auto;
   }
+
+  .header__nav {
+    margin-top: 0.5rem;
+  }
+
+  .header__nav-wrapper {
+    gap: 0.75rem;
+  }
 }
+
+/* Mobile mais estreito */
+@media (max-width: 768px) {
+  .header__nav-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .header__admin-pill {
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: var(--space-sm) var(--space-md);
+    margin-top: 15px;
+  }
+}
+

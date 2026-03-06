@@ -3,8 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../../../lib/supabase/supabaseClient";
 import { useAuth } from "../../../context/AuthContext";
 import "./LoginForm.css";
+import usePageFade from "../../../hooks/usePageFade";
 
 const LoginForm = () => {
+  usePageFade();
   const navigate = useNavigate();
   const location = useLocation();
   const { user, loading } = useAuth();
