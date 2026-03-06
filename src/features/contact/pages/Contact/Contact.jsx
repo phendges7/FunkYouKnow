@@ -1,13 +1,10 @@
 import "./Contact.css";
 import { useEffect, useRef, useState } from "react";
-import usePageFade from "../../../../hooks/usePageFade";
 import { sendContactMessage } from "../../services/contactService";
 
 import { useToast } from "../../../../context/ToastContext";
 
 const Contact = () => {
-  usePageFade();
-
   const { showToast } = useToast();
 
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -42,7 +39,6 @@ const Contact = () => {
       // ✅ Toast centralizado
       // Se seu showToast tiver assinatura diferente, veja nota abaixo
       showToast("Message sent! We’ll get back to you soon.", "success");
-      setTimeout(() => window.location.reload(), 3000);
 
       // ✅ refresh após 3s
       reloadTimerRef.current = setTimeout(() => {

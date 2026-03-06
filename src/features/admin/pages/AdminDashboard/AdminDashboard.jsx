@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../../../context/AuthContext";
-import usePageFade from "../../../../hooks/usePageFade";
 
 import { eventsService } from "../../../events/services/eventsService";
 import { fetchRequestedSongs } from "../../../songs/services/songsService";
@@ -10,8 +9,6 @@ import { fetchRequestedSongs } from "../../../songs/services/songsService";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
-  usePageFade();
-
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
 

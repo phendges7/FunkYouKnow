@@ -1,9 +1,7 @@
 import "./RequestSong.css";
-import usePageFade from "../../../../hooks/usePageFade.js";
 import useSubmitSongRequest from "../../hooks/useSubmitSongRequest.js";
 
 const RequestSong = () => {
-  usePageFade();
   const { isSubmitting, handleSubmit } = useSubmitSongRequest();
 
   return (

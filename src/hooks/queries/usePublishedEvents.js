@@ -8,7 +8,7 @@ export const usePublishedEvents = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("events")
-        .select("*")
+        .select("id, name, slug, description, date, thumbnail_url, ticket_url")
         .eq("status", "published")
         .is("deleted_at", null)
         .order("date", { ascending: false });

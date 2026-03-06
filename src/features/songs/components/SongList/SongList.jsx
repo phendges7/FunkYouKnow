@@ -1,6 +1,6 @@
 // src/features/songs/components/SongList/SongList.jsx
 import "./SongList.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SongCard from "../SongCard/SongCard";
 import {
   fetchRequestedSongs,
@@ -12,6 +12,7 @@ const SongList = () => {
   const [loading, setLoading] = useState(true);
   const [liking, setLiking] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const requestSeqRef = useRef(0);
 
   useEffect(() => {
     const cleanTerm = searchTerm.trim();
@@ -23,7 +24,9 @@ const SongList = () => {
   }, [searchTerm]);
 
   const loadSongs = async (term = "") => {
+    const requestId = ++requestSeqRef.current;
     setLoading(true);
+
     try {
       const data = await fetchRequestedSongs({
         orderBy: "like_count",
@@ -31,11 +34,15 @@ const SongList = () => {
         limit: term ? 50 : 15,
         searchTerm: term,
       });
+
+      if (requestId !== requestSeqRef.current) return;
       setSongs(data);
     } catch (err) {
+      if (requestId !== requestSeqRef.current) return;
       console.log("Error loading songs: ", err);
       // se quiser, depois pluga o Toast global aqui
     } finally {
+      if (requestId !== requestSeqRef.current) return;
       setLoading(false);
     }
   };

@@ -8,8 +8,11 @@ export const useEventBySlug = (slug) => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("events")
-        .select("*")
+        .select(
+          "id, name, slug, description, location, date, thumbnail_url, background_video_url, ticket_url",
+        )
         .eq("slug", slug)
+        .is("deleted_at", null)
         .single();
 
       if (error) throw new Error(error.message);

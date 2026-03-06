@@ -1,8 +1,8 @@
 ---
+name: create-feature
 description: Scaffold a new feature under src/features following the
   FUNK YOU KNOW architecture (React + Vite + JavaScript, BEM CSS,
   feature-first structure, logic in hooks/services).
-name: create-feature
 ---
 
 # Purpose

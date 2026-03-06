@@ -154,14 +154,9 @@ export const AuthProvider = ({ children }) => {
 
       window.addEventListener("storage", handleStorageSync);
 
-      const syncInterval = setInterval(() => {
-        if (mounted) loadInitialSession();
-      }, 120000);
-
       return () => {
         subscription?.unsubscribe();
         window.removeEventListener("storage", handleStorageSync);
-        clearInterval(syncInterval);
       };
     };
 

@@ -1,12 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import usePageFade from "../../../../hooks/usePageFade";
 
 import SongList from "../../../songs/components/SongList/SongList";
 import "./Main.css";
 
 const Main = () => {
-  usePageFade();
-
   const navigate = useNavigate();
   return (
     <div className="main">

@@ -1,11 +1,8 @@
-import usePageFade from "../../../../hooks/usePageFade";
 import EventCard from "../../components/EventCard/User/UserEventCard";
 import { usePublishedEvents } from "../../../../hooks/queries/usePublishedEvents";
 import "./PublicEventList.css";
 
 const PublicEventList = () => {
-  usePageFade();
-
   const {
     data: events = [],
     isLoading,

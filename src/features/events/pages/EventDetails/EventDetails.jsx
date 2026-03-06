@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 import ModalGallery from "../../../../components/media/ModalGallery/ModalGallery";
-import usePageFade from "../../../../hooks/usePageFade";
 import { useEventBySlug } from "../../../../hooks/queries/useEventBySlug";
 
 import defaultCover from "../../../../assets/cover_image_default.png";
@@ -19,8 +18,6 @@ import useModalGallery from "./hooks/useModalGallery";
 import "./EventDetails.css";
 
 const EventDetails = () => {
-  usePageFade();
-
   const { slug } = useParams();
 
   const {

@@ -1,8 +1,6 @@
 import "./Contact.css";
-import usePageFade from "../../../hooks/usePageFade";
 
 const Contact = () => {
-  usePageFade();
   return (
     <main className="contact">
       <div className="contact__content">
